@@ -1,45 +1,3 @@
-// import React, { useState } from 'react';
-// import { db } from '../Firebase/Firebase';
-// import { doc, updateDoc } from 'firebase/firestore';
-
-// function BlogEdit({ blog, setBlogs, setEditingBlog }) {
-//   const [title, setTitle] = useState(blog.title);
-//   const [description, setDescription] = useState(blog.Description);
-
-//   const handleUpdate = async () => {
-//     const blogRef = doc(db, 'Blog', blog.id);
-//     await updateDoc(blogRef, {
-//       title,
-//       Description: description,
-//     });
-//     setBlogs(prevBlogs => prevBlogs.map(b => (b.id === blog.id ? { ...b, title, Description: description } : b)));
-//     setEditingBlog(null);
-//   };
-
-//   return (
-//     <div className='p-4 border border-gray-300 rounded-md'>
-//       <input
-//         type='text'
-//         value={title}
-//         onChange={(e) => setTitle(e.target.value)}
-//         className='p-2 border border-gray-300 rounded-md'
-//       />
-//       <textarea
-//         value={description}
-//         onChange={(e) => setDescription(e.target.value)}
-//         className='p-2 border border-gray-300 rounded-md'
-//       />
-//       <button onClick={handleUpdate} className='m-2 p-2 bg-blue-500 text-white rounded-md'>
-//         Update
-//       </button>
-//       <button onClick={() => setEditingBlog(null)} className='m-2 p-2 bg-gray-500 text-white rounded-md'>
-//         Cancel
-//       </button>
-//     </div>
-//   );
-// }
-
-// export default BlogEdit;
 
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -83,25 +41,29 @@ function BlogEdit() {
   }
 
   return (
-    <div className='p-4 border border-gray-300 rounded-md'>
-      <h2 className='font-poppins text-2xl font-semibold'>Edit Blog</h2>
+    <div>
+      <h2 className='font-poppins text-2xl font-semibold text-center'>Edit Blog</h2>
+      <div className='flex flex-col gap-[10px] items-center mt-10'>
       <input
         type='text'
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        className='p-2 border border-gray-300 rounded-md'
+        className='p-2 border border-black rounded-md rounded-[10px] w-[600px]'
       />
       <textarea
         value={description}
         onChange={(e) => setDescription(e.target.value)}
-        className='p-2 border border-gray-300 rounded-md'
+        className='p-2 border border-black rounded-[10px] w-[600px] h-[200px]'
       />
-      <button onClick={handleUpdate} className='m-2 p-2 bg-blue-500 text-white rounded-md'>
-        Update
-      </button>
-      <button onClick={() => navigate('/userblogs')} className='m-2 p-2 bg-gray-500 text-white rounded-md'>
-        Cancel
-      </button>
+            <div className='flex items-center justify-center'>
+                <button onClick={handleUpdate} className='m-2 p-2 bg-black font-poppins text-white rounded-md'>
+                  Update
+                </button>
+                <button onClick={() => navigate('/userblogs')} className='rounded-md text-black border-2 border-black px-4 py-2 font-poppins'>
+                  Cancel
+                </button>
+            </div>
+      </div>
     </div>
   );
 }

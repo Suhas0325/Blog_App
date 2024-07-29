@@ -16,6 +16,7 @@ function Bloglist() {
  
 
   const onSubmit = async(e) => {
+    if(Description.split(' ').length >=100){
     e.preventDefault();
     await addDoc(collection(db,'Blog'),{
       
@@ -25,6 +26,17 @@ function Bloglist() {
     });
     setTitle('');
     setDescription('');
+    SetError(null);
+  }
+  else if(Description==='' || title==''){
+    e.preventDefault()
+    SetError("Fields are Empty ")
+  }
+  else{
+    e.preventDefault()
+    SetError("Enter Minimum Characters of 100");
+   
+  }
    
   }
 
@@ -43,10 +55,11 @@ function Bloglist() {
            value={title} onChange={(e)=>setTitle(e.target.value)} />
             <textarea placeholder='Enter Description' className=' p-2  border border-gray-300 rounded-[10px] w-[500px] h-[100px]'
              value={Description} onChange={(e)=>setDescription(e.target.value)}></textarea>
-      
+              {/* <p className='text-xs text-customGray '>{Description.split(' ').length}</p> */}
             <button className='bg-black border-2 border-black  text-white  font-poppins rounded-[10px] py-3 hover:bg-customGray border-none' type='submit'>Post It</button>
+           
            </form>
-          
+               {Error && <div className="text-red-500 mt-4">{Error}</div>}
           </div>
    )
    :
